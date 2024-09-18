@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12">
+    <h5 class="mb-3">
+      <a href="nuevaasignacion" class="btn btn-outline-dark me-5">Nueva Asignación</a>
+      <button class="btn btn-outline-primary" (click)="generarPDF()">Generar Reporte PDF</button>
+    </h5>
+    <div class="card tbl-card">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Proyecto</th>
+              <th>Empleado</th>
+              <th>Fecha Asignación</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asignacion of listaAsignaciones; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ asignacion.proyecto_id }}</td>
+              <td>{{ asignacion.empleado_id }}</td>
+              <td>{{ asignacion.fecha_asignacion }}</td>
+              <td>
+                <button type="button" class="btn btn-outline-success" [routerLink]="['/editarasignacion/', asignacion.asignacion_id]">
+                  Editar
+                </button>
+                <button (click)="eliminar(asignacion.asignacion_id)" type="button" class="btn btn-outline-danger">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

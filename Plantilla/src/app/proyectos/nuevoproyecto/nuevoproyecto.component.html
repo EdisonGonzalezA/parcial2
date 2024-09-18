@@ -1,0 +1,35 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h3>{{ titulo }}</h3>
+    <form [formGroup]="frm_Proyecto" (ngSubmit)="grabar()">
+      <div class="row">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre del Proyecto</label>
+          <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del proyecto" />
+          <div *ngIf="frm_Proyecto.get('nombre').invalid && frm_Proyecto.get('nombre').touched">
+            <small style="color: red">El nombre es requerido</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="descripcion">Descripción</label>
+          <textarea formControlName="descripcion" class="form-control" id="descripcion" placeholder="Ingrese la descripción"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="fecha_inicio">Fecha de Inicio</label>
+          <input formControlName="fecha_inicio" type="date" class="form-control" id="fecha_inicio" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="fecha_fin">Fecha de Fin</label>
+          <input formControlName="fecha_fin" type="date" class="form-control" id="fecha_fin" />
+        </div>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary" [disabled]="frm_Proyecto.invalid">Grabar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

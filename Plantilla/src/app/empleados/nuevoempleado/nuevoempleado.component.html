@@ -1,0 +1,38 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h3>{{ titulo }}</h3>
+    <form [formGroup]="frm_Empleado" (ngSubmit)="grabar()">
+      <div class="row">
+        <div class="form-group mb-3">
+          <label for="nombre">Nombre</label>
+          <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" />
+          <div *ngIf="frm_Empleado.get('nombre').invalid && frm_Empleado.get('nombre').touched">
+            <small style="color: red">El nombre es requerido</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="apellido">Apellido</label>
+          <input formControlName="apellido" type="text" class="form-control" id="apellido" placeholder="Ingrese el apellido" />
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input formControlName="email" type="email" class="form-control" id="email" placeholder="Ingrese el email" />
+          <div *ngIf="frm_Empleado.get('email').invalid && frm_Empleado.get('email').touched">
+            <small style="color: red">El email es inválido</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="posicion">Posición</label>
+          <input formControlName="posicion" type="text" class="form-control" id="posicion" placeholder="Ingrese la posición" />
+        </div>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary" [disabled]="frm_Empleado.invalid">Grabar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

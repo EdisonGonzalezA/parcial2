@@ -1,0 +1,44 @@
+<div class="card my-5">
+  <div class="card-body">
+    <h3>{{ titulo }}</h3>
+    <form [formGroup]="frm_Asignacion" (ngSubmit)="grabar()">
+      <div class="row">
+        <!-- Selector de Proyecto -->
+        <div class="form-group mb-3">
+          <label for="proyecto_id">Selecciona el Proyecto</label>
+          <select formControlName="proyecto_id" class="form-control" id="proyecto_id">
+            <option *ngFor="let proyecto of listaProyectos" [value]="proyecto.proyecto_id">
+              {{ proyecto.nombre }}
+            </option>
+          </select>
+          <div *ngIf="frm_Asignacion.get('proyecto_id').invalid && frm_Asignacion.get('proyecto_id').touched">
+            <small style="color: red">El proyecto es requerido</small>
+          </div>
+        </div>
+
+        <!-- Selector de Empleado -->
+        <div class="form-group mb-3">
+          <label for="empleado_id">Selecciona el Empleado</label>
+          <select formControlName="empleado_id" class="form-control" id="empleado_id">
+            <option *ngFor="let empleado of listaEmpleados" [value]="empleado.empleado_id">
+              {{ empleado.nombre }} {{ empleado.apellido }}
+            </option>
+          </select>
+          <div *ngIf="frm_Asignacion.get('empleado_id').invalid && frm_Asignacion.get('empleado_id').touched">
+            <small style="color: red">El empleado es requerido</small>
+          </div>
+        </div>
+
+        <!-- Campo de Fecha de Asignación -->
+        <div class="form-group mb-3">
+          <label for="fecha_asignacion">Fecha de Asignación</label>
+          <input formControlName="fecha_asignacion" type="date" class="form-control" id="fecha_asignacion" />
+        </div>
+
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary" [disabled]="frm_Asignacion.invalid">Grabar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
